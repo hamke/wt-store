@@ -14,13 +14,19 @@ if(typeof item_slug !== 'undefined') {
         $('.item-type').html('Item');
       }
 
+      var banner_png = 'https://ps.w.org/' + data.slug + '/assets/banner-772x250.png';
+      var banner_jpg = 'https://ps.w.org/' + data.slug + '/assets/banner-772x250.jpg';
+      var banner_default = './../../assets/img/wptalk-logo-800x400.png';
+
+      var banner_img = banner_png;
+
       var imageObj = new Image();
-      var item_image = 'https://ps.w.org/' + data.slug + '/assets/banner-772x250.png';
+      var item_image = banner_png;
       imageObj.src = item_image;
-      if (imageObj.width == 0) {
-        var banner_img = 'https://ps.w.org/' + data.slug + '/assets/banner-772x250.jpg';
+      if (imageObj.width !== 0) {
+        var banner_img = banner_png;
       } else {
-        var banner_img = './../img/wptalk-logo-800x400png';
+        var banner_img = banner_default;
       }
 
       $('.item-banner').attr('src', banner_img);
