@@ -16,7 +16,7 @@ if(typeof item_slug !== 'undefined') {
 
       var banner_png = 'https://ps.w.org/' + data.slug + '/assets/banner-772x250.png';
       var banner_jpg = 'https://ps.w.org/' + data.slug + '/assets/banner-772x250.jpg';
-      var banner_default = './../../assets/img/wptalk-logo-800x400.png';
+      var banner_default = 'https://hellotblog.files.wordpress.com/2020/07/wptalk-wordpress-logo-recommendations-800x400-1.png';
 
       var banner_img = banner_png;
 
