@@ -36,6 +36,8 @@ if(typeof item_slug !== 'undefined') {
       $('.item-download').attr('href', data.download_link);
       $('.item-updated').html(data.last_updated.substring(0,10));
 
+      document.querySelector('title').textContent = data.name + ' - WordPress.org Plugin';
+
       if(data.rating > 80){
         $('.item-rating').html('<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>');
       } else if (data.rating > 60){
