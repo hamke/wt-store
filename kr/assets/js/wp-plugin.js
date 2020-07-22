@@ -18,19 +18,16 @@ if(typeof item_slug !== 'undefined') {
       var banner_jpg = 'https://ps.w.org/' + data.slug + '/assets/banner-772x250.jpg';
       var banner_default = 'https://hellotblog.files.wordpress.com/2020/07/wptalk-wordpress-logo-recommendations-800x400-1.png';
 
+      var imgObj1 = new Image();
+      imgObj1.src = banner_png;
+      imgObj1.onload = function(){ $('.item-banner').attr('src', banner_png) };
+      imgObj1.onerror = function(){
+        var imgObj2 = new Image();
+        imgObj2.src = banner_jpg;
+        imgObj2.onload = function(){ $('.item-banner').attr('src', banner_jpg) };
+        imgObj2.onerror = function(){ $('.item-banner').attr('src', banner_default) };
+      };
 
-      var banner_img = banner_png;
-
-      var imageObj = new Image();
-      var item_image = banner_png;
-      imageObj.src = item_image;
-      if (imageObj.width !== 0) {
-        var banner_img = banner_png;
-      } else {
-        var banner_img = banner_default;
-      }
-
-      $('.item-banner').attr('src', banner_img);
       $('.item-name').html(data.name);
       $('.item-desc').html(data.sections.description);
       $('.item-desc a').attr('target', '_blank');
