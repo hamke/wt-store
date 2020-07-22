@@ -13,7 +13,16 @@ if(typeof item_slug !== 'undefined') {
       } else{
         $('.item-type').html('Item');
       }
-      var banner_img = 'https://ps.w.org/' + data.slug + '/assets/banner-772x250.png';
+
+      var imageObj = new Image();
+      var item_image = 'https://ps.w.org/' + data.slug + '/assets/banner-772x250.png';
+      imageObj.src = item_image;
+      if (imageObj.width == 0) {
+        var banner_img = 'https://ps.w.org/' + data.slug + '/assets/banner-772x250.jpg';
+      } else {
+        var banner_img = './../img/wptalk-logo-800x400png';
+      }
+
       $('.item-banner').attr('src', banner_img);
       $('.item-name').html(data.name);
       $('.item-desc').html(data.sections.description);
