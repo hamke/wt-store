@@ -1,5 +1,6 @@
 var IMP = window.IMP; // 생략가능
-IMP.init('imp21028697'); // "가맹점 식별코드(CID)"를 사용
+// IMP.init('imp21028697'); // hello@wp-talk.com
+IMP.init('imp14840138'); // leden_online@naver.com
 
 function pay() {
 
@@ -15,9 +16,10 @@ function pay() {
   }
 
   IMP.request_pay({
-    amount : product_amount,
+    amount : 10,
+    // amount : product_amount,
   	buyer_name : '게스트(비회원)',
-  	name : '워드프레스 상품 08'
+  	name : '워드프레스 상품 05'
     // pg: 'inicis', // version 1.1.0부터 지원.
     // pay_method: 'card',
     // merchant_uid: 'merchant_' + new Date().getTime(),
@@ -27,19 +29,62 @@ function pay() {
     // buyer_postcode: '123-456',
     // m_redirect_url: 'https://www.yourdomain.com/payments/complete'
   }, function(rsp) {
-    if (rsp.success) {
-      var msg = '결제가 완료되었습니다. ';
-      msg += '고유ID : ' + rsp.imp_uid;
-      msg += '상점 거래ID : ' + rsp.merchant_uid;
-      msg += '결제 금액 : ' + rsp.paid_amount;
-      msg += '카드 승인번호 : ' + rsp.apply_num;
+    if ( rsp.success ) {
+      //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+      jQuery.ajax({
+        url: './../../../process.php',
+        type: 'POST',
+        data: {
+          imp_uid : rsp.imp_uid
+          //기타 필요한 데이터가 있으면 추가 전달
+        },
+        success: function(response){
+          var msg = '결제가 완료되었습니다.';
+          alert(msg);
+          console.log(msg);
+          window.location = response;
+        }
+        // url: "./../../../kr/assets/js/example_get_by_imp_uid.php",
+        // type: 'POST',
+        // dataType: 'json',
+        // data: {
+        //   imp_uid : rsp.imp_uid
+        //   //기타 필요한 데이터가 있으면 추가 전달
+        // },
+        // success: function (data) {
+        //   console.log(data);
+        //   var a = document.createElement('a');
+        //   var url = window.URL.createObjectURL(data);
+        //   a.href = url;
+        //   a.download = 'myfile.pdf';
+        //   document.body.append(a);
+        //   a.click();
+        //   a.remove();
+        //   window.URL.revokeObjectURL(url);
+        // }
+        //
+        // url: 'https://hellotblog.files.wordpress.com/2018/07/11.pdf',
+        // method: 'GET',
+        // xhrFields: {
+        //   responseType: 'blob'
+        // },
+        // success: function (data) {
+        //   var a = document.createElement('a');
+        //   var url = window.URL.createObjectURL(data);
+        //   a.href = url;
+        //   a.download = 'myfile.pdf';
+        //   document.body.append(a);
+        //   a.click();
+        //   a.remove();
+        //   window.URL.revokeObjectURL(url);
+        // }
+      });
     } else {
-      var msg = rsp.error_msg;
-      // var msg = '결제에 실패하였습니다. ';
-      // msg += '에러내용 : ' + rsp.error_msg;
+        var msg = '결제에 실패하였습니다.';
+        // msg += '에러내용 : ' + rsp.error_msg;
+        alert(msg);
+        console.log(msg);
     }
-    alert(msg);
-    $("#product_info")[0].reset();
   });
 
 };
