@@ -18,7 +18,7 @@
     const urlParams = new URLSearchParams(queryString);
     var item_slug = urlParams.get('name');
     if ( ( item_slug == undefined ) || ( item_slug == '' ) ) {
-      alert("입력된 상품 정보가 없습니다. 불편을 드려 죄송합니다.");
+      alert("입력된 워드프레스 플러그인 정보가 없습니다.");
       $(location).attr('href', './../');
     }
     // var item_slug = "kandan";
@@ -224,8 +224,8 @@
 
   <a id="back-to-top" href="#" class="" title="Go To Top"><i class="fas fa-chevron-up"></i></a>
 
-  <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-  <script src="./../assets/js/iamport.js"></script>
+  <!-- <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+  <script src="./../assets/js/iamport.js"></script> -->
   <script src="./../assets/js/main.js"></script>
   <script src="./../assets/js/wp-plugin.js"></script>
 
