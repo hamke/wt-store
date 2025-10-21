@@ -1,9 +1,13 @@
 var IMP = window.IMP; // 생략가능
-// IMP.init('imp21028697'); // hello@wp-talk.com
-IMP.init('imp14840138'); // leden_online@naver.com
+// IMP.init('imp21028697'); // hello@wp-talk.com (카카오페이)
+// IMP.init('imp79611779'); // hello@ttmkt.com (카카오페이)
+// IMP.init('imp78149347'); // hello@chinatalk.net (카카오페이)
+IMP.init('imp14840138'); // leden_online@naver.com ( 카카오페이 / 테스트 )
+// IMP.init('imp90524050'); // the235style@yahoo.com ( 나이스페이 / 테스트 )
 
 function pay() {
 
+  var product_name = document.getElementById('product-name');
   var product_price = document.getElementById('price');
   var product_option = document.getElementById('selectBox');
 
@@ -19,7 +23,7 @@ function pay() {
     amount : 10,
     // amount : product_amount,
   	buyer_name : '게스트(비회원)',
-  	name : '워드프레스 상품 05'
+  	name : product_name
     // pg: 'inicis', // version 1.1.0부터 지원.
     // pay_method: 'card',
     // merchant_uid: 'merchant_' + new Date().getTime(),
